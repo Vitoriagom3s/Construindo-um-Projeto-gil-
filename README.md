@@ -7,6 +7,7 @@
 ## 📋 Visão Geral
 Solução completa para gestão de projetos ágeis integrada ao GitHub, desenvolvida para a TechFlow Solutions. Inclui quadro Kanban, métricas de time e CI/CD automatizado.
 
+
 ## ✨ Funcionalidades
 - **Kanban Interativo**: Arraste e solte tarefas entre colunas
 - **Autenticação**: Controle de acesso por JWT
@@ -14,6 +15,11 @@ Solução completa para gestão de projetos ágeis integrada ao GitHub, desenvol
   - Criação automática de issues
   - CI/CD com testes automatizados
 - **Relatórios**: Métricas de produtividade em tempo real
+
+![image](https://github.com/user-attachments/assets/c0ea844d-ff9b-4358-ba98-e48fa17481ef)
+
+
+![image](https://github.com/user-attachments/assets/9dce7900-1494-4ea6-88d8-5e8dfca86197)
 
 ## 🛠️ Tecnologias
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
@@ -27,6 +33,11 @@ Solução completa para gestão de projetos ágeis integrada ao GitHub, desenvol
 - Node.js 18+
 - Python 3.10+
 - Conta no GitHub
+
+
+
+https://github.com/user-attachments/assets/031019b0-c82f-4cc0-a72b-7adef529a160
+
 
 
 ## 🔄 Workflow GitHub
