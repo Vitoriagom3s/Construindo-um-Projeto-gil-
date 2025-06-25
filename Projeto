@@ -1,0 +1,291 @@
+
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechFlow Solutions - Sistema Ágil de Gerenciamento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .task-card {
+            transition: all 0.3s ease;
+        }
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .column {
+            min-height: 70vh;
+        }
+        #confetti {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Confetti canvas (hidden initially) -->
+    <canvas id="confetti" style="display: none;"></canvas>
+
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">TechFlow Solutions</h1>
+                    <p class="text-indigo-200">Sistema Ágil de Gerenciamento de Tarefas</p>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="userMenuButton" class="flex items-center space-x-2 focus:outline-none">
+                            <div class="w-10 h-10 rounded-full bg-indigo-400 flex items-center justify-center">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span class="hidden md:inline">Gestor</span>
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </button>
+                        <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-50">Perfil</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-50">Configurações</a>
+                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-50">Sair</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Project Overview -->
+        <section class="mb-12 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Visão Geral do Projeto</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <h3 class="font-medium text-indigo-700 mb-2">Objetivo</h3>
+                    <p class="text-gray-600">Desenvolver um sistema de gerenciamento de tarefas para startup de logística com acompanhamento em tempo real.</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="font-medium text-green-700 mb-2">Metodologia</h3>
+                    <p class="text-gray-600">Kanban ágil com quadros visuais, sprints de 2 semanas e reuniões diárias.</p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                    <h3 class="font-medium text-yellow-700 mb-2">Equipe</h3>
+                    <p class="text-gray-600">5 desenvolvedores, 1 Scrum Master, 1 Product Owner</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kanban Board -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">Quadro Kanban</h2>
+                <button id="addTaskBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i> Nova Tarefa
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- To Do Column -->
+                <div class="column bg-gray-100 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-semibold text-gray-700">A Fazer</h3>
+                        <span class="bg-gray-200 text-gray-600 px-2 py-1 rounded-full text-xs">3 tarefas</span>
+                    </div>
+                    <div id="todo-tasks" class="space-y-4">
+                        <div class="task-card bg-white rounded-lg shadow p-4 cursor-move" draggable="true">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-medium text-gray-800">Implementar autenticação</h4>
+                                <div class="flex space-x-2">
+                                    <span class="bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs">Alta</span>
+                                    <button class="text-gray-400 hover:text-gray-600"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Criar sistema de login com JWT e roles de usuário</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="far fa-calendar mr-1"></i> Prazo: 15/06</span>
+                                <span><i class="far fa-user mr-1"></i> João</span>
+                            </div>
+                        </div>
+                        <div class="task-card bg-white rounded-lg shadow p-4 cursor-move" draggable="true">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-medium text-gray-800">Design UI do dashboard</h4>
+                                <div class="flex space-x-2">
+                                    <span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full text-xs">Média</span>
+                                    <button class="text-gray-400 hover:text-gray-600"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Criar protótipo no Figma com componentes reutilizáveis</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="far fa-calendar mr-1"></i> Prazo: 18/06</span>
+                                <span><i class="far fa-user mr-1"></i> Maria</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- In Progress Column -->
+                <div class="column bg-gray-100 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-semibold text-gray-700">Em Progresso</h3>
+                        <span class="bg-gray-200 text-gray-600 px-2 py-1 rounded-full text-xs">2 tarefas</span>
+                    </div>
+                    <div id="inprogress-tasks" class="space-y-4">
+                        <div class="task-card bg-white rounded-lg shadow p-4 cursor-move" draggable="true">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-medium text-gray-800">Configurar GitHub Actions</h4>
+                                <div class="flex space-x-2">
+                                    <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs">Baixa</span>
+                                    <button class="text-gray-400 hover:text-gray-600"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Implementar pipeline CI/CD para testes automatizados</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="far fa-calendar mr-1"></i> Prazo: 12/06</span>
+                                <span><i class="far fa-user mr-1"></i> Carlos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Done Column -->
+                <div class="column bg-gray-100 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-semibold text-gray-700">Concluído</h3>
+                        <span class="bg-gray-200 text-gray-600 px-2 py-1 rounded-full text-xs">5 tarefas</span>
+                    </div>
+                    <div id="done-tasks" class="space-y-4">
+                        <div class="task-card bg-white rounded-lg shadow p-4 cursor-move" draggable="true">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-medium text-gray-800">Modelagem do banco de dados</h4>
+                                <div class="flex space-x-2">
+                                    <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Concluído</span>
+                                    <button class="text-gray-400 hover:text-gray-600"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Criar diagrama ER e scripts SQL para tabelas principais</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="far fa-calendar mr-1"></i> Concluído em: 05/06</span>
+                                <span><i class="far fa-user mr-1"></i> Ana</span>
+                            </div>
+                        </div>
+                        <div class="task-card bg-white rounded-lg shadow p-4 cursor-move" draggable="true">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-medium text-gray-800">Documentação inicial</h4>
+                                <div class="flex space-x-2">
+                                    <span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-xs">Concluído</span>
+                                    <button class="text-gray-400 hover:text-gray-600"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-3">Criar README.md com objetivos e instruções do projeto</p>
+                            <div class="flex justify-between items-center text-xs text-gray-500">
+                                <span><i class="far fa-calendar mr-1"></i> Concluído em: 01/06</span>
+                                <span><i class="far fa-user mr-1"></i> Pedro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metrics Section -->
+        <section class="mb-12 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Métricas do Projeto</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-medium text-gray-700 mb-4">Progresso do Sprint</h3>
+                    <div class="bg-gray-100 rounded-lg p-4 h-64">
+                        <!-- Progress chart placeholder -->
+                        <div class="flex items-center justify-center h-full text-gray-400">
+                            <i class="fas fa-chart-bar text-4xl mr-2"></i>
+                            <span>Gráfico de Progresso</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-medium text-gray-700 mb-4">Distribuição de Tarefas</h3>
+                    <div class="bg-gray-100 rounded-lg p-4 h-64">
+                        <!-- Distribution chart placeholder -->
+                        <div class="flex items-center justify-center h-full text-gray-400">
+                            <i class="fas fa-chart-pie text-4xl mr-2"></i>
+                            <span>Gráfico de Distribuição</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Integration -->
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Integração com GitHub</h2>
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="bg-indigo-100 p-3 rounded-lg mr-4">
+                        <i class="fas fa-code-branch text-indigo-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-2">Repositório do Projeto</h3>
+                        <p class="text-gray-600 mb-2">Acesse o repositório público no GitHub para ver o código fonte, histórico de commits e configurações.</p>
+                        <a href="https://github.com/" class="text-indigo-600 hover:underline" target="_blank">github.com/techflow/task-management</a>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-green-100 p-3 rounded-lg mr-4">
+                        <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-2">GitHub Actions</h3>
+                        <p class="text-gray-600 mb-2">Pipeline de CI/CD configurado para executar testes automatizados em cada push.</p>
+                        <div class="bg-gray-800 text-green-400 p-3 rounded-md font-mono text-sm overflow-x-auto">
+                            <span class="block">name: CI</span>
+                            <span class="block">on: [push, pull_request]</span>
+                            <span class="block">jobs:</span>
+                            <span class="block ml-4">test:</span>
+                            <span class="block ml-8">runs-on: ubuntu-latest</span>
+                            <span class="block ml-8">steps:</span>
+                            <span class="block ml-12">- uses: actions/checkout@v2</span>
+                            <span class="block ml-12">- run: npm install</span>
+                            <span class="block ml-12">- run: npm test</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                        <i class="fas fa-project-diagram text-blue-600 text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-2">Gestão de Mudanças</h3>
+                        <p class="text-gray-600 mb-2">Issue aberta para discutir a nova funcionalidade de relatórios solicitada pelo cliente.</p>
+                        <div class="bg-gray-100 p-3 rounded-md">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-xs mr-2">Feature</span>
+                                <span class="text-gray-600 text-sm">#27 - Adicionar relatórios de desempenho</span>
+                            </div>
+                            <p class="text-gray-600 text-sm">"Cliente solicitou adição de relatórios semanais de produtividade da equipe..."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold mb-2">TechFlow Solutions</h3>
+                    <p class="text-gray-400">Soluções em Software Ágil</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400
