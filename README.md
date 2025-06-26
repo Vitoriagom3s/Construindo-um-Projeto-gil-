@@ -34,36 +34,62 @@ Solução completa para gestão de projetos ágeis integrada ao GitHub, desenvol
 - Python 3.10+
 - Conta no GitHub
 
-
+## 🔄 Objetivo
+O objetivo deste repositório é simular o desenvolvimento de um sistema de gerenciamento de tarefas, aplicando conceitos de Engenharia de Software e metodologias ágeis. O projeto incluirá a organização do repositório, implementação de funcionalidades básicas, uso de ferramentas de controle de qualidade e gestão de mudanças.
 
 https://github.com/user-attachments/assets/031019b0-c82f-4cc0-a72b-7adef529a160
 
+## 🛠️ Metodologia Adotada
+Para a gestão do projeto, utilizaremos a metodologia Kanban, que será implementada na aba Projects do GitHub. As tarefas serão organizadas nas seguintes colunas:
 
+A Fazer
 
-## 🔄 Workflow GitHub
-gitGraph
+Em Progresso
 
-  commit
+Concluído
 
-  branch feature
+## Modelagem do Sistema
 
-  checkout feature
+### Requisitos Funcionais
 
-  commit
+1. **Gerenciamento de Tarefas (CRUD)**
+   - RF01: Criar nova tarefa
+   - RF02: Visualizar lista de tarefas
+   - RF03: Editar tarefa existente
+   - RF04: Excluir tarefa
+   - RF05: Alterar status da tarefa (A Fazer/Em Progresso/Concluído)
 
-  commit
+2. **Sistema de Autenticação**
+   - RF06: Cadastro de usuários
+   - RF07: Login de usuários
+   - RF08: Recuperação de senha
 
-  checkout main
+3. **Relatórios**
+   - RF09: Gerar relatório de produtividade da equipe
+   - RF10: Visualizar métricas de desempenho
 
-  merge feature
+### Requisitos Não-Funcionais
 
-  branch hotfix
+1. **Segurança**
+   - RNF01: Todos os dados sensíveis devem ser criptografados
+   - RNF02: O sistema deve validar todas as entradas do usuário
 
-  commit
+2. **Performance**
+   - RNF03: Tempo de resposta máximo de 2 segundos para operações básicas
+   - RNF04: Suporte a até 100 usuários simultâneos
 
-  checkout main
+3. **Usabilidade**
+   - RNF05: Interface intuitiva seguindo padrões de UX
+   - RNF06: Documentação clara para desenvolvedores
 
-  merge hotfix
+### Diagramas UML/Sequencia/Classe
+
+![diagrama](https://github.com/user-attachments/assets/debf3b02-ae64-4232-8e53-c4543190875f)
+
+![image](https://github.com/user-attachments/assets/51e496c6-c19a-4376-8e56-547067164ebb)
+
+![image](https://github.com/user-attachments/assets/76330684-0722-4b45-8cb4-c54f1c89df82)
+
 
 ### Instalação
 ```bash
