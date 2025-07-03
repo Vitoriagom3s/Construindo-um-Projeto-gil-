@@ -90,19 +90,20 @@ Concluído
 
 ![image](https://github.com/user-attachments/assets/76330684-0722-4b45-8cb4-c54f1c89df82)
 
+## Conclusão
+
+Em resumo, o projeto "Gestão Ágil no GitHub" foi uma solução eficaz para os desafios enfrentados por equipes de logística. Consegui implementar um sistema de gerenciamento de tarefas que aumentou a visibilidade e a colaboração, utilizando um quadro Kanban integrado e automação de testes com GitHub Actions.Enfrentando desafios como a adaptação do escopo e a necessidade de documentação clara, mas as decisões técnicas tomadas foram fundamentais para o sucesso do projeto. Aprendi a importância da comunicação eficaz e do feedback contínuo, além de ganhar experiência prática com metodologias ágeis.Este projeto não apenas atendeu às necessidades iniciais, mas também nos prepara para futuros desafios, reforçando a relevância da agilidade e da colaboração no desenvolvimento de software.
+
+## Contato
+Para dúvidas ou sugestões, entre em contato:
+
+viviamorimgomes08@gmail.com
 
 
-### Instalação
-```bash
-# Clone o repositório
-git clone https://github.com/seuuser/task-management.git
-cd task-management
-
-# Instale dependências
-npm install
-pip install -r requirements.txt
 
 
-## 🌐 Uso
-#backend- python src/main.py
-#frontend-  run dev
+
+
+
+
+
